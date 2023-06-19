@@ -1,10 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Bibliograph</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            flex-grow: 1;
+            margin-bottom: 60px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .login-form {
+            display: none;
+        }
+
+        .login-field {
+            display: none;
+        }
+        .about-container {
+          display: flex;
+          align-items: center;
+        }
+        .image-container {
+          flex: 1;
+          text-align: center;
+        }
+
+        .text-container {
+          flex: 1;
+          padding-left: 20px;
+        }
+
+        .about-image {
+          max-width: 100%;
+          height: 550px;
+        }
+        .site-title {
+            margin: 0;
+            padding: 10px;
+            font-size: 24px;
+            font-weight: bold;
+    </style>
+    <script>
+        function toggleLoginForm() {
+            var loginForm = document.getElementById("login-form");
+            var loginFields = document.getElementsByClassName("login-field");
+            if (loginForm.style.display === "none") {
+                loginForm.style.display = "block";
+                for (var i = 0; i < loginFields.length; i++) {
+                    loginFields[i].style.display = "block";
+                }
+            } else {
+                loginForm.style.display = "none";
+                for (var i = 0; i < loginFields.length; i++) {
+                    loginFields[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </head>
 <body>
+    <header>
+        <nav>
+            <h1 class="site-title">Bibliograph</h1>
+            <ul>
+                <li><a href="base.html">Home</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="#" onclick="toggleLoginForm()">Login</a></li>
+            </ul>
+        </nav>
+        <div id="login-form" class="login-form">
+            <form method="post" action="{% url 'login' %}">
 
+                <label for="username" class="login-field">Username:</label>
+                <input type="text" name="username" id="username" class="login-field">
+                <br>
+                <label for="password" class="login-field">Password:</label>
+                <input type="password" name="password" id="password" class="login-field">
+                <br>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </header>
+    <main>
+        <div class="about-container">
+          <div class="image-container">
+            <img src="my foto.jpg" alt="foto" class="about-image">
+          </div>
+          <div class="text-container">
+            <h2>About me</h2>
+            <p>
+                I am a student of Cherkasy National University named after Bohdan Khmelnytskyi. I live and work in
+                Ukraine, in the city of Cherkasy. I am studying in the third year of the AKIT faculty.</p>
+            <p>    How to contact me:</p>
+            <p>    antonenko.anastasiya@vu.cdu.edu.ua</p>
+          </div>
+        </div>
+    </main>
+    <footer>
+        <p>Antonenko Anastasiya 2023</p>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            var loginForm = document.getElementById("login-form");
+            var loginFields = document.getElementsByClassName("login-field");
+            loginForm.style.display = "none";
+            for (var i = 0; i < loginFields.length; i++) {
+                loginFields[i].style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>

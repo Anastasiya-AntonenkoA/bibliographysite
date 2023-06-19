@@ -7,6 +7,9 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
@@ -31,8 +34,10 @@
             text-decoration: none;
         }
 
+
         main {
-            margin: 20px;
+            flex-grow: 1;
+            margin-bottom: 60px;
         }
 
         footer {
@@ -40,6 +45,10 @@
             color: #fff;
             padding: 10px;
             text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
 
         .login-form {
             display: none;
@@ -47,6 +56,23 @@
 
         .login-field {
             display: none;
+        }
+        .site-title {
+            margin: 0;
+            padding: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .text-container {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 5px;
+        }
+
+        .welcome-text {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #333;
         }
     </style>
     <script>
@@ -70,10 +96,10 @@
 <body>
     <header>
         <nav>
+            <h1 class="site-title">Bibliograph</h1>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/resources">Resources</a></li>
-                <li><a href="/about">About us</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about_us.html">About us</a></li>
                 <li><a href="#" onclick="toggleLoginForm()">Login</a></li>
             </ul>
         </nav>
@@ -91,6 +117,14 @@
         </div>
     </header>
     <main>
+       <div class="text-container">
+            <p class="welcome-text">
+                Welcome to our site! We offer a wide range of resources for education and training. Find the materials,
+                books, articles and more you need to deepen your knowledge and improve your skills. Use our search tool
+                to conveniently find the resources you need. Join our community and get access to quality educational
+                content. Expand your world of knowledge with us!
+            </p>
+        </div>
         <h1>Materials</h1>
         <ul>
             {% for material in materials %}
@@ -100,7 +134,7 @@
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <p>Antonenko Anastasiya</p>
+        <p>Antonenko Anastasiya 2023</p>
     </footer>
 
     <script>
