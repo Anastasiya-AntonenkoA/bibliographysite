@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Результати пошуку</h1>
+  <form method="get" action="{% url 'resource_search' %}">
+    <input type="text" name="q" placeholder="Пошук" value="{{ request.GET.q }}">
+    <button type="submit">Пошук</button>
+  </form>
+  <ul>
+    {% for resource in resources %}
+      <li>{{ resource.title }}</li>
+    {% empty %}
+      <li>Немає результатів</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

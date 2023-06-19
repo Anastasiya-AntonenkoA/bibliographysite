@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bibliograph</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+
+        .login-form {
+            display: none;
+        }
+
+        .login-field {
+            display: none;
+        }
+    </style>
+    <script>
+        function toggleLoginForm() {
+            var loginForm = document.getElementById("login-form");
+            var loginFields = document.getElementsByClassName("login-field");
+            if (loginForm.style.display === "none") {
+                loginForm.style.display = "block";
+                for (var i = 0; i < loginFields.length; i++) {
+                    loginFields[i].style.display = "block";
+                }
+            } else {
+                loginForm.style.display = "none";
+                for (var i = 0; i < loginFields.length; i++) {
+                    loginFields[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/about">About us</a></li>
+                <li><a href="#" onclick="toggleLoginForm()">Login</a></li>
+            </ul>
+        </nav>
+        <div id="login-form" class="login-form">
+            <form method="post" action="{% url 'login' %}">
+
+                <label for="username" class="login-field">Username:</label>
+                <input type="text" name="username" id="username" class="login-field">
+                <br>
+                <label for="password" class="login-field">Password:</label>
+                <input type="password" name="password" id="password" class="login-field">
+                <br>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </header>
+    <main>
+        <h1>Materials</h1>
+        <ul>
+            {% for material in materials %}
+                <li>{{ material.title }}</li>
+            {% endfor %}
+        </ul>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>Antonenko Anastasiya</p>
+    </footer>
+
+    <script>
+        // Викликати функцію після завантаження сторінки для приховування полів вводу
+        window.onload = function() {
+            var loginForm = document.getElementById("login-form");
+            var loginFields = document.getElementsByClassName("login-field");
+            loginForm.style.display = "none";
+            for (var i = 0; i < loginFields.length; i++) {
+                loginFields[i].style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
